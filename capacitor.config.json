@@ -1,0 +1,21 @@
+{
+  "appId": "com.wms.terminal",
+  "appName": "WMS ТСД",
+  "webDir": "www",
+  "includePlugins": [
+    "@capacitor/app",
+    "@capacitor-mlkit/barcode-scanning",
+    "@capacitor/haptics"
+  ],
+  "ios": {
+    "appendUserAgent": "WMSTerminalApp",
+    "contentInset": "never",
+    "preferredContentMode": "mobile",
+    "webContentsDebuggingEnabled": false
+  },
+  "server": {
+    "hostname": "terminal.localhost",
+    "iosScheme": "capacitor",
+    "cleartext": false
+  }
+}

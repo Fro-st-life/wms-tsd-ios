@@ -1,0 +1,1 @@
+function n(r){const t=String(r||"").trim().replace(/^\*+|\*+$/g,"").trim();if(!t.toUpperCase().startsWith("$WBMP"))return t;const e=t.toUpperCase().split(":").filter(Boolean),s=e.length?e[e.length-1]:"";return/^\d+$/.test(s)?`WB-MP-${s}`:t}function a(r){const t=n(r).toUpperCase();return t.startsWith("KB_")||t.startsWith("WB-MP")||t.startsWith("WB_MP")}export{a as i,n};

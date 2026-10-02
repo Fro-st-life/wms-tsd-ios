@@ -1,0 +1,43 @@
+workflows:
+  terminal-testflight:
+    name: Terminal — upload to TestFlight
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    integrations:
+      app_store_connect: codemagic
+    environment:
+      node: 22
+      xcode: latest
+      cocoapods: default
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.wms.terminal
+    scripts:
+      - name: Install and sync Capacitor
+        script: |
+          set -euo pipefail
+          cd "$CM_BUILD_DIR"
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm run sync
+      - name: Apply signing profiles
+        script: |
+          set -euo pipefail
+          xcode-project use-profiles --project ios/App/App.xcodeproj --archive-method app-store --code-signing-setup-verbose-logging
+      - name: Set unique build number
+        script: |
+          set -euo pipefail
+          cd "$CM_BUILD_DIR/ios/App"
+          xcrun agvtool new-version -all "$((PROJECT_BUILD_NUMBER + 1))"
+      - name: Build signed IPA
+        script: |
+          set -euo pipefail
+          xcode-project build-ipa --workspace ios/App/App.xcworkspace --scheme App
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - ios/App/Podfile.lock
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: false
+        submit_to_app_store: false

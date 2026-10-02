@@ -1,0 +1,1 @@
+function a(c,t){const n=String(t??"").trim();return!n||!Array.isArray(c)?[]:c.filter(r=>[r.product?.barcode,r.product?.sku,r.barcode,r.product_barcode].some(o=>o!=null&&String(o).trim()===n))}export{a as f};

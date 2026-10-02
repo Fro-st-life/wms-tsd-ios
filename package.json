@@ -1,0 +1,24 @@
+{
+  "name": "wms-terminal-ios",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync": "node verify-web.mjs && cap sync ios",
+    "check:release": "node verify-web.mjs --release",
+    "open": "cap open ios"
+  },
+  "dependencies": {
+    "@capacitor-mlkit/barcode-scanning": "8.1.0",
+    "@capacitor/app": "8.1.0",
+    "@capacitor/core": "8.3.1",
+    "@capacitor/haptics": "8.0.0",
+    "@capacitor/ios": "8.3.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.3.1"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

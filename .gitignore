@@ -1,0 +1,13 @@
+node_modules/
+build/
+ios/App/Pods/
+ios/App/App/public/
+ios/App/App/capacitor.config.json
+ios/App/App/config.xml
+ios/capacitor-cordova-ios-plugins/
+**/xcuserdata/
+**/DerivedData/
+*.p12
+*.p8
+*.mobileprovision
+.DS_Store
