@@ -80,7 +80,9 @@ The demonstration warehouse is selected automatically. These public credentials 
 local fictitious data and cannot access the production backend at https://app.skladzilla.pro.
 We request approval to use this demonstration mode for review without exposing client data.
 It uses the regular operation screens. No server, external scanner or physical printer is
-required for these scenarios; printing, dispatcher replies and loading are simulated.
+required for these scenarios; printer output, dispatcher replies, driver receipt and
+service charges are simulated. Generated label codes and local results are shown in
+the demo guide. No goods are moved outside the local fictitious warehouse.
 
 Open “Сценарии и коды” (“Scenarios and codes”) in the top demo banner for instructions,
 sample QR codes and reset. Data changes locally and survives closing the app; reset or
@@ -98,12 +100,84 @@ EAN, Code128 and Data Matrix labels. A sample product code is 4600000000015.
 6. Control: open DEMO-ORDER-002 / PT_DEMO001 and verify KB_DEMO001 and KB_DEMO002.
 7. Loading: select the demo driver or DRIVER_DEMO001, add KB_DEMO001 and confirm.
 8. Sorting: create a session, scan 4600000000015, open a box, scan again, undo a scan,
-   close the box and finish. Label printing is simulated.
+   close the box and finish. Label printing is simulated. Use the guide's cancelled
+   parcel code to add 2 shirts together; a duplicate parcel is rejected and undo removes
+   both units. Live/mixed parcels are rejected; a shared product code opens a choice.
 9. Defects: scan 4600000000022, select the stock batch, quantity and reason, save.
 10. Box movement: move KB_DEMO001 to PT_DEMO002. Zone movement accepts LOAD-01.
-11. Order stages: scan KB_DEMO001, start and finish the demo check, or skip with a reason.
-12. Search, operation history, tasks, statistics, profile and local dispatcher chat are
-    available. Test sign-out and reset. Privacy is accessible before and after sign-in.
+11. Marking: open DEMO-KIZ-203 / cell B-01-01. Pick one unit at a time into
+    TARA_DEMO203 (decrease quantity to 1). Enter the two distinct sample marking codes
+    from the guide in the marking dialog. Invalid codes, foreign GTINs and reused
+    serials are rejected. Reset to test the regular “Товар без КИЗ” confirmation.
+12. Kits: DEMO-KIT-204 contains one notebook and two pens in B-02-01. Both lines
+    identify the kit. Pick them into TARA_DEMO204 and place it on PACK-01.
+13. Alternatives: DEMO-ALT-205 has stock in B-03-01 and B-03-02. Report a problem
+    or select another location, pick 3 units into TARA_DEMO205 and check balances.
+14. Packed returns: DEMO-RETURN-206 / R-01-01 asks whether to reuse a return.
+    Confirm to pick 2 units into TARA_DEMO206; reset to test declining.
+15. Whole boxes: DEMO-BOX-207 / P-01-01 offers “Взять коробом”. Confirm to take
+    KB_DEMO_PREPACK with all 4 units in one operation, without a picking tara.
+16. Expiry: DEMO-IN-ADVANCED contains two marked pairs and two creams. Enter the
+    cream production date; its 12-month shelf life calculates expiry automatically.
+    In free receiving, the sample Data Matrix supplies lot DEMO-LOT and expiry
+    2030-01-01. Complete receiving with a note to test a quantity discrepancy.
+17. Container putaway: scan KB_DEMO_INBOUND, choose its cream and place 3 units
+    into A-01-02. Batch and expiry are preserved; partial placement is possible.
+18. Shrink wrapping: open DEMO-ORDER-002 from the guide, start shrink wrapping,
+    finish and waive one new unit with a comment. Only 3 units are charged locally.
+19. Rework: DEMO-REWORK-208 starts with 3 previously charged units, 2 new units
+    and 1 rework unit. Finish rework; only the 2 new units receive a simulated charge.
+20. FBS rounds: DEMO-FBS-210 has posting 9211 ready and 9210 still unpicked.
+    Waive posting 9211 with a comment or finish normally. Pick the remaining unit
+    in order 210, then complete another shrink round without duplicate charges.
+21. Stage rules and history: DEMO-NOSHRINK-209 does not require shrink wrapping.
+    Skip the custom demo check with a reason, then restart and inspect skip history.
+22. Hired driver: after control, open DRIVER_DEMO_HIRED and enter fictitious name
+    and car details. Add KB_DEMO001. Use “Имитировать получение груза водителем” in
+    the guide to update the receipt counter, then confirm loading. Unload the cargo
+    to return it to ready-for-shipment status. Driver links are demonstration values.
+23. Search, operation history, tasks, statistics, profile and local dispatcher chat
+    are available. Inventory discrepancies and picking problems appear in the guide.
+    Printer actions create local label previews there. Statistical graphs are examples.
+24. Settings: theme, font size, feedback, scanner preferences, warehouse and zone
+    selection use the regular controls. Test sign-out and reset. Privacy is accessible
+    before and after sign-in. Camera permission, torch and real recognition need a device.
+
+## Проверка полной демонстрации ТСД
+
+Установите новую сборку из TestFlight, нажмите «Попробовать демо» и откройте
+«Сценарии и коды». Там 24 сценария с переходами, образцами QR и результатами.
+Перед повторением зависимого сценария используйте «Сбросить учебные данные»:
+сборка, приёмка, перемещение и погрузка меняют общий учебный склад.
+На первом входе после обновления набора данных прежняя демонстрация сбрасывается.
+
+| Проверка | Ожидаемый результат |
+| --- | --- |
+| Приёмка и свободная приёмка | Количество, партия и даты сохраняются; принятый товар появляется в размещении. Для расхождения нужен комментарий. |
+| Размещение, включая контейнер | Товар исчезает из очереди по мере размещения, остаток появляется в выбранной ячейке с исходной партией и сроком. |
+| Сборка по заказу и по ячейке | Товары попадают в выбранную тару, резерв и остаток уменьшаются. Завершение требует размещения тары на PACK-01. |
+| КИЗ | Два разных кода принимаются поштучно; неверный формат, чужой GTIN и повтор отклоняются без изменения остатков. «Без КИЗ» работает после подтверждения. Коды вымышлены и не отправляются в Честный ЗНАК. |
+| Комплект | Отображаются оба компонента одного набора; заказ завершается после отбора блокнота и двух ручек. |
+| Альтернативная ячейка | Показываются свободные остатки, выбранная ячейка используется при отборе; чужой резерв сохраняется. Жалоба появляется в результатах. |
+| Возврат и целый короб | Возврат требует решения кладовщика; целый короб отбирается один раз всеми четырьмя единицами. |
+| Перемещение и брак | Количества и журнал меняются; превышение свободного остатка отклоняется. Проверьте частичное перемещение и отказ от подтверждения. |
+| Инвентаризация | Сохраняются фактическое количество и расхождения; они видны в учебных результатах. Остатки автоматически не корректируются. |
+| Контроль | Проверка обоих коробов переводит заказ 202 в «Готов к отгрузке». Можно проверить пропуск контроля с причиной. |
+| Погрузка | Список и скан добавляют один груз без дублей; наёмный водитель сохраняется, учебное получение меняет «Принял». Завершение даёт «В пути», снятие возвращает готовность к отгрузке. |
+| Сортировка и печать | Товар добавляется поштучно, отменённая посылка — двумя единицами; повтор посылки, действующая и смешанная посылки отклоняются. Общий код вызывает выбор товара. Отмена снимает всё количество последнего скана, закрытие и завершение сохраняются. Этикетки доступны в сценариях и поиске. |
+| Короба и зоны | Изменяется паллет или ячейка грузоместа; поиск показывает новое размещение. |
+| Термоусадка | Отдельно пройти снятие количества, доработку, снятие постинга FBS, второй раунд, пропуск с причиной и запрет ненужного этапа. Начисления учебные; завершение без причины снятия отклоняется. |
+| Чат, поиск и история | Учебный диспетчер отвечает локально; поиск и журнал отражают выполненные операции. Графики статистики демонстрационные. |
+| Перезапуск, сброс и выход | Закрытие приложения сохраняет прогресс; сброс возвращает начальное состояние; выход открывает вход. Рабочие черновики не перезаписываются. |
+| Ошибочный скан | Произвольный код из сценариев передаётся обычному обработчику; неизвестный товар/ячейка не меняют склад. |
+
+Автономный режим позволяет пройти действия кладовщика, но не заменяет проверку
+оборудования и интеграций. На iPhone дополнительно проверьте разрешение/отказ
+камеры, EAN/Code128/QR/Data Matrix, фонарик, закрытие камеры, фон/возврат приложения,
+звук, вибрацию и внешний сканер в режиме клавиатуры. На рабочем или отдельном
+тестовом сервере проверьте сетевой вход, CORS, реальные права, обновления между
+несколькими сотрудниками, принтер, сообщения настоящему диспетчеру и приложение
+водителя. Эти внешние действия в автономном аккаунте намеренно имитируются.
 
 We request unlisted distribution because this app is intended for warehouse employees of
 participating organizations, including users of personal unmanaged iPhones.
