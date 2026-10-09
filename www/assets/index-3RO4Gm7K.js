@@ -1,2 +1,0 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./web-ARtyPWj_.js","./terminal-BYX5Mupg.js","./terminal-DqbzugS7.css"])))=>i.map(i=>d[i]);
-import{f as a,av as t,a0 as r}from"./terminal-BYX5Mupg.js";const i=a("DataWedge",{web:()=>t(()=>import("./web-ARtyPWj_.js"),__vite__mapDeps([0,1,2]),import.meta.url).then(e=>new e.DataWedgeWeb)});r.isNativePlatform()&&i.__registerReceiver();export{i as DataWedge};
