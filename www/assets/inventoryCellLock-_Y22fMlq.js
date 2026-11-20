@@ -1,0 +1,1 @@
+function s(t,n){const e=t?.response?.data?.detail;return t?.response?.status!==409||typeof e!="string"||!e.includes("на пересчёте")?!1:(n.add({severity:"warn",summary:"Ячейка на пересчёте",detail:e,life:6e3}),!0)}export{s as w};

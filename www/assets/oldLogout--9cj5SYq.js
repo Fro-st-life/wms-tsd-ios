@@ -1,0 +1,1 @@
+import{s as e}from"./outboxStore-BVn96dV5.js";const o="Выход недоступен: не отправлено операций — {n}. Откройте главную ТСД и разберите их.";function c(l,t){if(t==null)return"";let n=null;try{n=e(l,t)}catch{n=null}return n?.count?o.replace("{n}",String(n.count)):""}export{c as l};

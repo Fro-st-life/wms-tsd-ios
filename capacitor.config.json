@@ -5,8 +5,10 @@
   "includePlugins": [
     "@capacitor/app",
     "@capacitor-mlkit/barcode-scanning",
-    "@capacitor/haptics"
+    "@capacitor/haptics",
+    "@capacitor/push-notifications"
   ],
+  "plugins": { "PushNotifications": { "presentationOptions": [] } },
   "ios": {
     "appendUserAgent": "WMSTerminalApp",
     "contentInset": "never",

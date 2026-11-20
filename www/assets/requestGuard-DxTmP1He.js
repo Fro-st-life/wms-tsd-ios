@@ -1,0 +1,1 @@
+function r(){let t=0;return{next(){return t+=1,t},isCurrent(n){return n===t}}}function e(){const t=globalThis.crypto;return t&&typeof t.randomUUID=="function"?t.randomUUID():`${Date.now().toString(36)}-${Math.random().toString(36).slice(2,12)}`}export{r as c,e as n};

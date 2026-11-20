@@ -7,10 +7,25 @@
     <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>WMS Terminal</title>
-    <script type="module" crossorigin src="./assets/terminal-CS-vmx-p.js"></script>
+    <script type="module" crossorigin src="./assets/terminal-Ca7Bzx7M.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/terminal-DqbzugS7.css">
   </head>
   <body>
+    <script>window.PACKING_V2_ENABLED = window.PACKING_V2_ENABLED === true; /* PACKING_V2_SERVER_FLAG */</script>
+    <!-- Буфер стартовых вызовов десктопа до загрузки Vue. Встроен: сервер не раздаёт файлы из корня сборки
+         (/имя.js уходит в SPA-заглушку index.html). -->
+    <script>
+    // Буфер стартовых вызовов десктопа до загрузки Vue.
+    (function(root) {
+      const calls = root.__packingLegacyCalls = [];
+      const stubs = root.__packingLegacyStubs = [];
+      const names = ['addLogMessage', 'showKizDuplicateConfirmation', 'closeKizDuplicateConfirmation', 'checkProductInOrder', 'clearBoxItems', 'flashScan', 'handleRebootSignal', 'hideKitAssembly', 'onContainerReprintResult', 'populateItemsTable', 'populateOrderFilter', 'resetScannerModes', 'setCheckProductMode', 'setEditMode', 'setEditModeBox', 'setEventLogOpen', 'setEventLogVerbose', 'setPackingHints', 'setRemoteSupportStatus', 'setWsStatus', 'showCancelledFbsAlert', 'showCheckProductResult', 'showKitAssembly', 'showKizRefusedAlert', 'showLabelPending', 'showPrintError', 'showToast', 'updateBoxItems', 'updateBoxStatus', 'updateKitAssembly', 'updateOrderCompanies', 'updateOzonPackages', 'updatePalletCounters', 'updatePalletItems', 'updatePalletStatus', 'updateTaskCard', 'updateWorkstations'];
+      for (const name of names) if (typeof root[name] !== 'function') {
+        const stub = root[name] = (...args) => calls.push([name,args]);
+        stubs.push([name,stub]);
+      }
+    })(window);
+    </script>
     <div id="app"></div>
     <!-- <<< ГЛАВНОЕ ОТЛИЧИЕ: подключаем другой JS-файл >>> -->
   </body>
