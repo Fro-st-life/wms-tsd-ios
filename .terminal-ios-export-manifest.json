@@ -6,6 +6,7 @@
     "ios/.gitignore",
     "ios/App/App.xcodeproj/project.pbxproj",
     "ios/App/App.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist",
+    "ios/App/App/App.entitlements",
     "ios/App/App/AppDelegate.swift",
     "ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-512@2x.png",
     "ios/App/App/Assets.xcassets/AppIcon.appiconset/Contents.json",
