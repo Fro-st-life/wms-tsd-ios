@@ -1,0 +1,1 @@
+import{A as r}from"./index-DIX9czLN.js";import{C as n,g as i,ab as s}from"./terminal-BXq42ydw.js";function m(o){if(n.getPlatform()!=="ios")return;let e=!0,t;i(async()=>{const a=await r.addListener("backButton",()=>{if(e)return o()});e?t=a:await a.remove()}),s(()=>(e=!1,t?.remove()))}export{m as u};
